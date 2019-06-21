@@ -29,7 +29,7 @@ fn show_server_info(url : &str) {
 
     let info : String = redis::cmd("INFO").arg("server").query(&con).unwrap();
     for line in info.lines() {
-        if line.starts_with("uptime_in_days:") {
+        if line.starts_with("uptime_in_days:") || line.starts_with("redis_version:") {
             println!("    {}", line);
         }
     }
